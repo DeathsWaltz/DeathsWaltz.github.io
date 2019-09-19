@@ -4,27 +4,6 @@
   
     
     <entry>
-      <title>blender使用记录</title>
-      <link href="/2019/09/19/learn-blender/"/>
-      <url>/2019/09/19/learn-blender/</url>
-      
-        <content type="html"><![CDATA[<p>blender下载地址：<a href="https://www.blender.org/download/" target="_blank" rel="noopener">https://www.blender.org/download/</a></p><p>blender教程：<a href="https://tutorial.blendercn.org/" target="_blank" rel="noopener">https://tutorial.blendercn.org/</a></p><p>blender中文手册：<a href="https://docs.blender.org/manual/zh-hans/latest/" target="_blank" rel="noopener">https://docs.blender.org/manual/zh-hans/latest/</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> blender </tag>
-            
-            <tag> 3d </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>使用jenkins记录</title>
       <link href="/2019/09/12/use-jenkins/"/>
       <url>/2019/09/12/use-jenkins/</url>
