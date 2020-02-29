@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>分布式事务</title>
+      <link href="/2020/02/26/distributed-system-transaction/"/>
+      <url>/2020/02/26/distributed-system-transaction/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 分布式事务 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang安装</title>
       <link href="/2020/02/19/golang-install/"/>
       <url>/2020/02/19/golang-install/</url>
