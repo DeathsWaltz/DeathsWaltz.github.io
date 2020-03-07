@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://azrael-1252339850.cos.ap-chengdu.myqcloud.com/20200307142325.png">
 <meta property="og:image" content="https://azrael-1252339850.cos.ap-chengdu.myqcloud.com/20200307150301.png">
 <meta property="og:image" content="https://azrael-1252339850.cos.ap-chengdu.myqcloud.com/20200307145939.png">
-<meta property="og:updated_time" content="2020-03-07T07:13:09.630Z">
+<meta property="og:updated_time" content="2020-03-07T07:15:50.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用canal进行mysql数据实时同步">
 <meta name="twitter:description" content="场景对数据库进行实时增量备份。 安装配置准备mysql数据库需要先开启 Binlog写入功能，配置binlog-format 为 ROW模式，my.cnf中配置如下 1234[mysqld]log-bin=mysql-bin # 开启 binlogbinlog-format=ROW # 选择 ROW 模式server_id=1 # 配置 MySQL replaction 需要定义，不要和 cana">
@@ -213,11 +213,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:8081/syncSwitch/sys_info</span><br></pre></td></tr></table></figure>
 
 <p>查看指定 canal instance/MQ topic 的数据同步开关状态</p>
-<ul>
-<li>查看相关库总数据</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:8081/count/hbase/mytest_person2.yml</span><br></pre></td></tr></table></figure>
-
 <h3 id="增加Prometheus监控"><a href="#增加Prometheus监控" class="headerlink" title="增加Prometheus监控"></a>增加Prometheus监控</h3><p>安装并部署对应平台的<code>prometheus</code>，参见<a href="prometheus-grafana">这里</a></p>
 <p>配置<code>prometheus.yml</code>，添加<code>canal</code>的<code>job</code>，示例：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">'canal'</span></span><br><span class="line">   <span class="attr">static_configs:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="attr">targets:</span> <span class="string">['localhost:11112']</span> <span class="string">//端口配置即为canal.properties中的canal.metrics.pull.port</span></span><br></pre></td></tr></table></figure>
