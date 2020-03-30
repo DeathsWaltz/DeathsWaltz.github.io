@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二维码生成</title>
+    <style>
+        #qrcode,
+		#text {
+			max-width: 1024px;
+		}
+		#text {
+			width: 95%;
+		}
+		#label{
+			width: 53.9%;
+			height: 30px;
+		}
+        img {
+            border: 1px #ddd solid;
+        }
+	</style>
+</head>
+
+<body>
+
+    <center>
+        <textarea id="text" type="text" placeholder="请输入内容" rows="23.333" cols="23.333" autofocus=""></textarea>
+        <input type="text" name="label" id="label" placeholder="请输入中间标题" autofocus="">
+
+        <p id="qrcode"></p>
+    </center>
+    <script>
+        text.value = window.location.hash.substring(1);
+    </script>
+
+<script src="https://cdn.jsdelivr.net/combine/npm/jquery@2.2.4/dist/jquery.min.js,gh/lrsjng/jquery-qrcode@0.14.0/dist/jquery-qrcode.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lrsjng/jquery-qrcode@0.14.0/dist/jquery-qrcode.min.js"></script> -->
+    <script type="text/javascript">
+        $(function () {
+
+            function qr(text,label) {
+                var options = {
+                    render: 'canvas',
+                    size: 300,
+                    ecLevel: 'Q',
+                    fill: '#233',
+                    background: null,
+                    text: text,
+                    label: label,
+                    fontname: 'sans',
+                    fontcolor: '#233',
+                    quiet: 0,
+                    mode: 2
+                };
+                $("#qrcode").empty().qrcode(options);
+            }
+
+
+
+            if (window.location.hash) {
+                var v = window.location.hash.substring(1,window.location.hash.indexOf("&"));
+                var label = window.location.hash.substring(window.location.hash.indexOf("&")+1,window.location.hash.length);
+                $("#text").val(v);
+                $("#label").val(label);
+                qr(v,label);
+            }
+
+            $("#label").on("input", function (e) {
+            	var v = $("#text").val();
+                var label = $(e.target).val();
+                window.location.hash = v+"&"+label;
+                qr(v,label);
+                if (v === "") {
+                    qrcode.innerHTML = '请输入内容'
+                } else {
+                    qr(v,label);
+                }
+            })
+
+
+            $("#text").on("input", function (e) {
+            	var label = $("#label").val();
+                var v = $(e.target).val();
+                window.location.hash = v+"&"+label;
+                qr(v,label);
+                if (v === "") {
+                    qrcode.innerHTML = '请输入内容'
+                } else {
+                    qr(v,label);
+                }
+            })
+        })
+
+    </script>
+
+
+</body></html>
