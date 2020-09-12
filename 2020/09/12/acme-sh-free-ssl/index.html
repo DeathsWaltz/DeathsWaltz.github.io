@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="安装acme.sh1curl https://get.acme.sh | sh  或者 1wget -O - https://get.acme.sh | sh  最好使用第二个命令，原因：wget 命令用来从指定的URL下载文件。wget非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它">
+<meta name="keywords" content=".acme.sh,https,证书,nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="acme.sh免费https证书">
+<meta property="og:url" content="https://akapril.github.io/2020/09/12/acme-sh-free-ssl/index.html">
+<meta property="og:site_name" content="Akapril&#39;s">
+<meta property="og:description" content="安装acme.sh1curl https://get.acme.sh | sh  或者 1wget -O - https://get.acme.sh | sh  最好使用第二个命令，原因：wget 命令用来从指定的URL下载文件。wget非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-12T05:49:24.352Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="acme.sh免费https证书">
+<meta name="twitter:description" content="安装acme.sh1curl https://get.acme.sh | sh  或者 1wget -O - https://get.acme.sh | sh  最好使用第二个命令，原因：wget 命令用来从指定的URL下载文件。wget非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>acme.sh免费https证书</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/booklist">booklist</a></li>
+         
+          <li><a href="/tools">tools</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/04/23/cordova-plugin/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&text=acme.sh免费https证书"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&is_video=false&description=acme.sh免费https证书"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=acme.sh免费https证书&body=Check out this article: https://akapril.github.io/2020/09/12/acme-sh-free-ssl/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&name=acme.sh免费https证书&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装acme-sh"><span class="toc-number">1.</span> <span class="toc-text">安装acme.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成证书"><span class="toc-number">2.</span> <span class="toc-text">生成证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#copy-安装证书"><span class="toc-number">3.</span> <span class="toc-text">copy/安装证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#续期证书"><span class="toc-number">4.</span> <span class="toc-text">续期证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新acme-sh"><span class="toc-number">5.</span> <span class="toc-text">更新acme.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误"><span class="toc-number">6.</span> <span class="toc-text">错误</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        acme.sh免费https证书
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Akapril's</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-12T05:10:43.000Z" itemprop="datePublished">2020-09-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/acme-sh/">.acme.sh</a>, <a class="tag-link" href="/tags/https/">https</a>, <a class="tag-link" href="/tags/nginx/">nginx</a>, <a class="tag-link" href="/tags/证书/">证书</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O - https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>最好使用第二个命令，原因：<strong>wget</strong> 命令用来从指定的<strong>URL</strong>下载文件。<strong>wget</strong>非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，<strong>wget</strong>会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它会再次联到服务器上从停止的地方继续下载。这对从那些限定了链接时间的服务器上下载大文件非常有用。</p>
+<p>添加环境变量：</p>
+<p><code>/etc/profile</code>中添加<code>alias acme.sh=~/.acme.sh/acme.sh</code>，保存后执行<code>source /etc/profile</code>加载配置。</p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p><strong>http</strong></p>
+<p><code>-d</code>参数后为需要生成https证书的域名，<code>--webroot</code>参数为网站跟目录， 然后自动完成验证.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue  -d mydomain.com -d www.mydomain.com  --webroot  /home/wwwroot/mydomain.com/</span><br></pre></td></tr></table></figure>
+
+<p> <strong>apache</strong>服务器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue  -d mydomain.com   --apache</span><br></pre></td></tr></table></figure>
+
+<p><strong>nginx</strong>服务器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue  -d mydomain.com   --nginx</span><br></pre></td></tr></table></figure>
+
+<p>无<strong>web</strong>服务器,根据域名生成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue -d mydomain.com   --standalone</span><br></pre></td></tr></table></figure>
+
+<p><strong>dns</strong></p>
+<p>无需服务器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue  --dns   -d mydomain.com</span><br></pre></td></tr></table></figure>
+
+<p>然后, <strong>acme.sh</strong> 会生成相应的解析记录显示出来, 你只需要在你的域名管理面板中添加这条 txt 记录即可.</p>
+<p>等待解析完成之后, 重新生成证书:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --renew   -d mydomain.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>dns</strong> 方式的真正强大之处在于可以使用域名解析商提供的<strong>api</strong> 自动添加 txt 记录完成验证.</p>
+<p><strong>acme.sh</strong> 目前支持 <strong>cloudflare</strong>, <strong>dnspod</strong>, <strong>cloudxns</strong>, <strong>godaddy</strong> 以及 <strong>ovh</strong> 等数十种解析商的自动集成.</p>
+<p>以 <strong>dnspod</strong> 为例, 你需要先登录到 <strong>dnspod</strong> 账号, 生成你的 <strong>api id</strong> 和 <strong>api key</strong>, 都是免费的. 然后:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export DP_Id="1234"</span><br><span class="line"></span><br><span class="line">export DP_Key="sADDsdasdgdsf"</span><br><span class="line"></span><br><span class="line">acme.sh   --issue   --dns dns_dp   -d aa.com  -d www.aa.com</span><br></pre></td></tr></table></figure>
+
+<p>证书就会自动生成了. 这里给出的 <strong>api id *<em>和 *</em>api key</strong> 会被自动记录下来, 将来你在使用<strong>dnspod api</strong> 的时候, 就不需要再次指定了. 直接生成就好了:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue   -d  mydomain2.com   --dns  dns_dp</span><br></pre></td></tr></table></figure>
+
+<p>更多：<a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh/wiki/dnsapi</a></p>
+<h4 id="copy-安装证书"><a href="#copy-安装证书" class="headerlink" title="copy/安装证书"></a>copy/安装证书</h4><p>默认生成的证书都放在安装目录下: <code>~/.acme.sh/</code>,请不要直接使用此目录下的文件, 例如: 不要直接让 nginx/apache 的配置文件使用这下面的文件. 这里面的文件都是内部使用, 而且目录结构可能会变化.</p>
+<p>正确的使用方法是使用 <code>--install-cert</code> 命令,并指定目标位置, 然后证书文件会被copy到相应的位置, 例如:</p>
+<p><strong>Apache example</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d mydomain.com \</span><br><span class="line">--cert-file      /path/to/certfile/in/apache/cert.pem  \</span><br><span class="line">--key-file       /path/to/keyfile/in/apache/key.pem  \</span><br><span class="line">--fullchain-file /path/to/fullchain/certfile/apache/fullchain.pem \</span><br><span class="line">--reloadcmd     &quot;service apache2 force-reload&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Nginx example</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d example.com \</span><br><span class="line">--key-file       /path/to/keyfile/in/nginx/key.pem  \</span><br><span class="line">--fullchain-file /path/to/fullchain/nginx/cert.pem \</span><br><span class="line">--reloadcmd     &quot;service nginx force-reload&quot;</span><br></pre></td></tr></table></figure>
+
+<p>(一个小提醒, 这里用的是 <code>service nginx force-reload</code>, 不是 <code>service nginx reload</code>, 据测试, <code>reload</code> 并不会重新加载证书, 所以用的 <code>force-reload</code>)</p>
+<p><strong>Nginx</strong> 的配置 <code>ssl_certificate</code> 使用 <code>/etc/nginx/ssl/fullchain.cer</code> ，而非 <code>/etc/nginx/ssl/&lt;domain&gt;.cer</code> ，否则 <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">SSL Labs</a> 的测试会报 <code>Chain issues Incomplete</code> 错误。</p>
+<p><code>--install-cert</code>命令可以携带很多参数, 来指定目标文件. 并且可以指定 reloadcmd, 当证书更新以后, reloadcmd会被自动调用,让服务器生效.</p>
+<p><strong>Nginx</strong>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 443 ssl;</span><br><span class="line">        server_name www.mydomain.com;</span><br><span class="line">        </span><br><span class="line">        ssl_certificate /path/to/keyfile/in/nginx/cert.pem;</span><br><span class="line">        ssl_certificate_key /path/to/fullchain/nginx/key.pem;</span><br><span class="line">        ssl_session_timeout  5m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;     #指定SSL服务器端支持的协议版本</span><br><span class="line">        ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">        #ssl_ciphers  ALL：!ADH：!EXPORT56：RC4+RSA：+HIGH：+MEDIUM：+LOW：+SSLv2：+EXP;    #指定加密算法</span><br><span class="line">        ssl_prefer_server_ciphers   on;    #在使用SSLv3和TLS协议时指定服务器的加密算法要优先于客户端的加密算法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="续期证书"><a href="#续期证书" class="headerlink" title="续期证书"></a>续期证书</h4><p>目前证书在 60 天以后会自动更新, 你无需任何操作. 今后有可能会缩短这个时间, 不过都是自动的, 你不用关心.</p>
+<h4 id="更新acme-sh"><a href="#更新acme-sh" class="headerlink" title="更新acme.sh"></a>更新acme.sh</h4><p>目前由于 <strong>acme</strong> 协议和 <strong>letsencrypt CA</strong> 都在频繁的更新, 因此 <strong>acme.sh</strong> 也经常更新以保持同步.</p>
+<p>升级 acme.sh 到最新版 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --upgrade</span><br></pre></td></tr></table></figure>
+
+<p>如果你不想手动升级, 可以开启自动升级:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --upgrade  --auto-upgrade</span><br></pre></td></tr></table></figure>
+
+<p>之后, <strong>acme.sh</strong> 就会自动保持更新了.</p>
+<p>你也可以随时关闭自动更新:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --upgrade  --auto-upgrade  0</span><br></pre></td></tr></table></figure>
+
+<h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><p>如果出错, 请添加 <strong>debug log</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue  .....  --debug</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh  --issue  .....  --debug  2</span><br></pre></td></tr></table></figure>
+
+<p>请参考： <a href="https://github.com/Neilpang/acme.sh/wiki/How-to-debug-acme.sh" target="_blank" rel="noopener">https://github.com/Neilpang/acme.sh/wiki/How-to-debug-acme.sh</a></p>
+<p>更高级的用法请参看其他 *<em>wiki *</em>页面.</p>
+<p><a href="https://github.com/Neilpang/acme.sh/wiki" target="_blank" rel="noopener">https://github.com/Neilpang/acme.sh/wiki</a></p>
+<p>参考文档:</p>
+<p><a href="https://github.com/acmesh-official/acme.sh" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh</a></p>
+<p><a href="https://github.com/acmesh-official/acme.sh/wiki/说明" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh/wiki/说明</a></p>
+<p><a href="https://segmentfault.com/a/1190000022263697" target="_blank" rel="noopener">https://segmentfault.com/a/1190000022263697</a></p>
+<p><a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh/wiki/dnsapi</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/booklist">booklist</a></li>
+         
+          <li><a href="/tools">tools</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装acme-sh"><span class="toc-number">1.</span> <span class="toc-text">安装acme.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成证书"><span class="toc-number">2.</span> <span class="toc-text">生成证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#copy-安装证书"><span class="toc-number">3.</span> <span class="toc-text">copy/安装证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#续期证书"><span class="toc-number">4.</span> <span class="toc-text">续期证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新acme-sh"><span class="toc-number">5.</span> <span class="toc-text">更新acme.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误"><span class="toc-number">6.</span> <span class="toc-text">错误</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&text=acme.sh免费https证书"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&is_video=false&description=acme.sh免费https证书"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=acme.sh免费https证书&body=Check out this article: https://akapril.github.io/2020/09/12/acme-sh-free-ssl/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&title=acme.sh免费https证书"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://akapril.github.io/2020/09/12/acme-sh-free-ssl/&name=acme.sh免费https证书&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Akapril
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/booklist">booklist</a></li>
+         
+          <li><a href="/tools">tools</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
